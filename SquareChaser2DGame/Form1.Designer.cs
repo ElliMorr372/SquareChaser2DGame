@@ -33,6 +33,7 @@
             this.winLabel = new System.Windows.Forms.Label();
             this.p2ScoreLabel = new System.Windows.Forms.Label();
             this.p1ScoreLabel = new System.Windows.Forms.Label();
+            this.restartButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -74,12 +75,26 @@
             this.p1ScoreLabel.Text = "0";
             this.p1ScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // restartButton
+            // 
+            this.restartButton.BackColor = System.Drawing.Color.Indigo;
+            this.restartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.restartButton.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.restartButton.Location = new System.Drawing.Point(241, 506);
+            this.restartButton.Name = "restartButton";
+            this.restartButton.Size = new System.Drawing.Size(126, 49);
+            this.restartButton.TabIndex = 3;
+            this.restartButton.Text = "Restart";
+            this.restartButton.UseVisualStyleBackColor = false;
+            this.restartButton.Click += new System.EventHandler(this.restartButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.Indigo;
             this.ClientSize = new System.Drawing.Size(600, 600);
+            this.Controls.Add(this.restartButton);
             this.Controls.Add(this.p1ScoreLabel);
             this.Controls.Add(this.p2ScoreLabel);
             this.Controls.Add(this.winLabel);
@@ -101,6 +116,7 @@
         private System.Windows.Forms.Label winLabel;
         private System.Windows.Forms.Label p2ScoreLabel;
         private System.Windows.Forms.Label p1ScoreLabel;
+        private System.Windows.Forms.Button restartButton;
     }
 }
 

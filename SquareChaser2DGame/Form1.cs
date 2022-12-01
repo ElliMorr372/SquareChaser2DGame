@@ -13,8 +13,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //Elliana Morrison: December 1st, 2022
-//A square chaser game that has a stationary
-//ball and movable players
+//A square chaser game that has a speed powerup, a point square,
+//and two players that can move in any orentation
 
 namespace SquareChaser2DGame
 {
@@ -25,10 +25,10 @@ namespace SquareChaser2DGame
         Rectangle pointSquare = new Rectangle();
         Rectangle speedBoost = new Rectangle();
 
-        SolidBrush pinkBrush = new SolidBrush(Color.HotPink);
-        SolidBrush purpleBrush = new SolidBrush(Color.Purple);
+        SolidBrush pinkBrush = new SolidBrush(Color.Fuchsia);
+        SolidBrush blueBrush = new SolidBrush(Color.Cyan);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
-        SolidBrush greenBrush = new SolidBrush(Color.Green);
+        SolidBrush greenBrush = new SolidBrush(Color.Lime);
         Pen greenPen = new Pen(Color.Green);
 
         int player1Score = 0;
@@ -58,6 +58,7 @@ namespace SquareChaser2DGame
         {
             InitializeComponent();
             winLabel.Visible = false;
+            restartButton.Visible = false;
             int p1XPosition = randGen.Next(25, 551);
             int p1YPosition = randGen.Next(25, 551);
             int p2XPosition = randGen.Next(25, 551);
@@ -148,7 +149,7 @@ namespace SquareChaser2DGame
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.FillRectangle(pinkBrush, player1);
-            e.Graphics.FillRectangle(purpleBrush, player2);
+            e.Graphics.FillRectangle(blueBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, pointSquare);
             e.Graphics.DrawEllipse(greenPen, speedBoost);
             e.Graphics.FillEllipse(greenBrush, speedBoost);
@@ -249,6 +250,7 @@ namespace SquareChaser2DGame
                 gameTimer.Enabled = false;
                 winLabel.Visible = true;
                 winLabel.Text = "Player  1  Wins!!";
+                restartButton.Visible = true;
             }
             else if (player2Score == 5)
             {
@@ -256,10 +258,30 @@ namespace SquareChaser2DGame
                 gameTimer.Enabled = false;
                 winLabel.Visible = true;
                 winLabel.Text = "Player  2  Wins!!";
+                restartButton.Visible = true;
             }
 
             Refresh();
         }
 
+        private void restartButton_Click(object sender, EventArgs e)
+        {
+            gameTimer.Enabled = true;
+            player1Score = 0;
+            player2Score = 0;
+            winLabel.Text = "";
+            winLabel.Visible = false;
+            restartButton.Visible = false;
+            int p1XPosition = randGen.Next(25, 551);
+            int p1YPosition = randGen.Next(25, 551);
+            int p2XPosition = randGen.Next(25, 551);
+            int p2YPosition = randGen.Next(25, 551);
+            player1 = new Rectangle(p1XPosition, p1YPosition, 25, 25);
+            player2 = new Rectangle(p2XPosition, p2YPosition, 25, 25);
+            Draw_SpeedBooster();
+            Draw_PointSquare();
+
+            this.Focus();
+        }
     }
 }
