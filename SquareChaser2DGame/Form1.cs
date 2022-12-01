@@ -20,6 +20,7 @@ namespace SquareChaser2DGame
 {
     public partial class Form1 : Form
     {
+        //setup all objects, ints, bools, random generators, and soundplayers
         Rectangle player1 = new Rectangle();
         Rectangle player2 = new Rectangle();
         Rectangle pointSquare = new Rectangle();
@@ -59,18 +60,21 @@ namespace SquareChaser2DGame
             InitializeComponent();
             winLabel.Visible = false;
             restartButton.Visible = false;
+            //create random values and use them to set the players positions
             int p1XPosition = randGen.Next(25, 551);
             int p1YPosition = randGen.Next(25, 551);
             int p2XPosition = randGen.Next(25, 551);
             int p2YPosition = randGen.Next(25, 551);
             player1 = new Rectangle(p1XPosition, p1YPosition, 25, 25);
             player2 = new Rectangle(p2XPosition, p2YPosition, 25, 25);
+            //draw all objects
             Draw_SpeedBooster();
             Draw_PointSquare();
         }
 
         private void Draw_SpeedBooster()
         {
+            //randomize new position for the speed booster
             int boostXPosition = randGen.Next(25, 551);
             int boostYPosition = randGen.Next(25, 551);
 
@@ -79,6 +83,7 @@ namespace SquareChaser2DGame
 
         private void Draw_PointSquare()
         {
+            //randomize new position for the point square
             int pointXPosition = randGen.Next(25, 551);
             int pointYPosition = randGen.Next(25, 551);
             pointSquare = new Rectangle(pointXPosition, pointYPosition, 13, 13);
@@ -148,6 +153,7 @@ namespace SquareChaser2DGame
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            //Draw and fill all players and objects
             e.Graphics.FillRectangle(pinkBrush, player1);
             e.Graphics.FillRectangle(blueBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, pointSquare);
@@ -266,6 +272,7 @@ namespace SquareChaser2DGame
 
         private void restartButton_Click(object sender, EventArgs e)
         {
+            //reset labels and player scores, and redraw all players and objects
             gameTimer.Enabled = true;
             player1Score = 0;
             player2Score = 0;
